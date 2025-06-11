@@ -7,7 +7,13 @@ const CustomForm = () => {
     // controlar el form, que hacer (handle) al submittear y el estado
     const {control, handleSubmit, formState: { errors }} = useForm<FormValues>({
         resolver: zodResolver(schema),
-        mode: "onBlur"
+        mode: "onBlur",
+        defaultValues: {
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: ""
+        }
     });
 
     // se asocia con handleSubmit
