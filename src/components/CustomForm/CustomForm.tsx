@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import InputForm from "./components/CustomInput";
-import { schema, type FormValues } from "./models";
+import InputForm from "../CustomInput/CustomInput";
+import { schema, type FormValues } from "../../models";
 
 const CustomForm = () => {
     // controlar el form, que hacer (handle) al submittear y el estado

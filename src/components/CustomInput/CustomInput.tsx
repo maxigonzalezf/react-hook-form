@@ -1,6 +1,6 @@
 import { Controller, type Control, type FieldError } from "react-hook-form";
 import './CustomInput.css'
-import type { FormValues } from "../models";
+import type { FormValues } from "../../models";
 
 interface Props {
     name: keyof FormValues; // los nombres son las claves del form values
