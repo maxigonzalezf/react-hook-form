@@ -1,54 +1,65 @@
-# React + TypeScript + Vite
+📝 React Custom Form with Zod Validation
+This repository contains an example of a custom form in React using react-hook-form and zod for data validation. The form includes fields for name, email, password, and password confirmation, all validated according to a schema defined with zod.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Technologies Used
+React: JavaScript library for building user interfaces.
 
-Currently, two official plugins are available:
+React Hook Form: Library for managing forms in React simply and flexibly.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Zod: Library for schema-based data validation.
 
-## Expanding the ESLint configuration
+TypeScript: A superset of JavaScript that adds static types to the language.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+📂 Project Structure
+src/
+│
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+├── components/
+│   ├── CustomForm/
+│   │   └── CustomForm.tsx   # Main form component
+│   └── CustomInput/
+│       └── CustomInput.tsx  # Reusable component for form fields
+│
+├── models/
+│   └── index.ts             # Type definitions and validation schema with Zod
+│
+├── App.tsx                  # Main application component
+├── index.tsx                # React entry point
+└── App.css                  # General application styles
+🛠️ Installation
+Clone the repository:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+git clone https://github.com/your-username/repo-name.git
+cd repo-name
+Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+npm install
+Run the application:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+npm start
+📜 Usage
+This project provides a solid base for creating forms in React with robust validation. The modular structure allows you to easily add new fields and validations.
+
+Customization
+You can modify the validation schema in src/models/index.ts to suit the needs of your form.
+
+Example Schema with Zod
+import * as z from "zod";
+
+export const schema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Must be a valid email"),
+  password: z.string().min(8, "Password must be at least 8 characters long"),
+  confirmPassword: z.string().min(8, "You must confirm your password")
+    .refine((val, ctx) => val === ctx.parent.password, {
+      message: "Passwords must match",
+    }),
+});
+
+
+export type FormValues = z.infer<typeof schema>;
+🤝 Contributions
+Contributions are welcome! If you have any improvements or find any bugs, feel free to open an issue or submit a pull request.
+
+📝 License
+This project is licensed under the MIT License. See the LICENSE file for more details.
