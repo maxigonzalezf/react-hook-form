@@ -6,7 +6,8 @@ import { schema, type FormValues } from "../../models";
 const CustomForm = () => {
     // controlar el form, que hacer (handle) al submittear y el estado
     const {control, handleSubmit, formState: { errors }} = useForm<FormValues>({
-        resolver: zodResolver(schema)
+        resolver: zodResolver(schema),
+        mode: "onBlur"
     });
 
     // se asocia con handleSubmit
